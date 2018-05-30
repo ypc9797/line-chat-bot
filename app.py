@@ -65,12 +65,14 @@ def handle_message(event):
 		return 0
 
 	elif event.message.text in ('算一下','查詢'):
+		print("我是1")
 		image_carousel_template = ImageCarouselTemplate(columns=[
-			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/28/bLum7a.png',
+			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/uMksip.png',
 								action=DatetimePickerTemplateAction(label='查一下好日子',
 																	data='cal'
 																	))
 			])
+		print("我是二")
 		template_message = TemplateSendMessage(
 		alt_text='算一下良辰吉時', template = image_carousel_template)
 		line_bot_api.reply_message(event.reply_token, template_message)
