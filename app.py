@@ -317,10 +317,12 @@ def handle_message(event):
 				actions=[
 					PostbackTemplateAction(
 						label='我要輸入',
-						data='update'
+						data='update',
+						text='輸入經期'
 					),
 					PostbackTemplateAction(
-						label='算了'
+						label='算了',
+						text='上一次'
 					)
 				]
 			)
