@@ -456,7 +456,7 @@ def handle_postback(event):
 			return 0
 
 		print("我是七")
-		last_date = datetime.strftime(last_date_str,"%Y-%m-%d")		
+		last_date = datetime.strptime(last_date_str,"%Y-%m-%d")		
 		period = last_date + timedelta(days=28) #月經日期是第一天加上週期
 		preg = last_date + timedelta(days=10) #經期來後10天開始的一周內容易懷孕
 		diet = last_date + timedelta(days=7) #經期來後7天開始的一周內容易懷孕
