@@ -5,7 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 def auth_gss_client(path, scopes):
 	credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
 	return gspread.authorize(credentials)
-	
+
 def update_sheet(gss_client, key, item,the_day):
 	theday = the_day
 	userid = item
@@ -13,8 +13,10 @@ def update_sheet(gss_client, key, item,the_day):
 	if check == 0: #原本沒有紀錄
 		wks = gss_client.open_by_key(key)
 		sheet = wks.sheet1
-		sheet.insert_row([item,the_day], 2)
+		sheet.insert_row([userid,the_day], 2)
 	else:
+		wks = gss_client.open_by_key(key)
+		sheet = wks.sheet1
 		cell = sheet.find(userid)
 		r = cell.row
 		c = cell.col
