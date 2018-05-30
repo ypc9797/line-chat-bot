@@ -450,6 +450,17 @@ def handle_message(event):
 		else :
 			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
+	elif event.message.text in ('經期相關','查詢經期相關問題'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'經期相關')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
 	elif event.message.text in ("查","查詢"):
 		buttons_template = TemplateSendMessage(
 			alt_text='查詢 template',
@@ -459,16 +470,8 @@ def handle_message(event):
 				thumbnail_image_url='https://upload.cc/i1/2018/05/31/DVwFRg.png',
 				actions=[
 					MessageTemplateAction(
-						label='上一次月經',
-						text='上一次'
-					),
-					MessageTemplateAction(
-						label='預計下一次月經',
-						text='下一次'
-					),
-					MessageTemplateAction(
-						label='非安全期',
-						text='危險期'
+						label='查詢經期相關問題',
+						text='經期相關'
 					),
 					MessageTemplateAction(
 						label='黃金瘦身期',

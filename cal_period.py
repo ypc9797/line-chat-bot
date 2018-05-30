@@ -33,25 +33,32 @@ def next_period(user_id,username,choice):
 	elif choice =='上一次' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
+		content += '你上次紀錄的日期是' + last_date_str + ''
 		return content
 	elif choice =='下一次' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來'
 		return content			
 	elif chioce =='瘦身' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
+		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!'
 		return content
 	elif choice =='豐胸' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
+		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷'
 		return content
 	elif choice =='危險' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
+		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻'
+		return content
+	elif choice =='經期相關' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'		
+		content += '要注意!!\n' + preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻'
 		return content
