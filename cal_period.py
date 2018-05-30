@@ -16,7 +16,6 @@ def next_period(user_id,choice):
 		print(last_date_str)
 	except:
 		print("我是六")
-		line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
 		return 0
 
 	last_date = datetime.strptime(last_date_str,"%Y-%m-%d")	

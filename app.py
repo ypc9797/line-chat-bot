@@ -396,7 +396,10 @@ def handle_message(event):
 	elif event.message.text in ('日子'):
 		the_id = event.source.user_id
 		content = cal_period.next_period(the_id,'all')
-		line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 	else :
 		message = TextSendMessage(text=event.message.text)
