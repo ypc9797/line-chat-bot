@@ -1,5 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 #為了記錄到spreadsheet
 def auth_gss_client(path, scopes):
@@ -34,3 +35,10 @@ def find_user_period(gss_client, key, userid):
 		return period_day
 	except:
 		return 0
+
+def user_log(gss_client, key, userid,username,message):
+	day = datetime.now().strftime("%Y-%m-%d")
+	time = datetime.now().time().strftime("%H:%M:%S")
+	wks = gss_client.open_by_key(key)
+	sheet = wks.sheet2
+	sheet.insert_row([userid,username,day,time,message], 2)
