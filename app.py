@@ -52,11 +52,11 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-	if event.message.text == 'first':
+	if event.message.text == '強制輸入':
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/d6Skxh.png',
 								action=DatetimePickerTemplateAction(label='點我選最近一次經期日期',
-																	data='first',
+																	data='update',
 																	mode='date'))
 			])
 		template_message = TemplateSendMessage(
@@ -315,15 +315,13 @@ def handle_message(event):
 			template=ConfirmTemplate(
 				text='要更新經期嗎？舊的紀錄會洗掉唷~~',
 				actions=[
-					PostbackTemplateAction(
+					MessageTemplateAction(
 						label='我要輸入',
-						data='update',
-						text='輸入經期'
+						text='強制輸入'
 					),
-					PostbackTemplateAction(
+					MessageTemplateAction(
 						label='算了',
-						text='上一次',
-						data='whatever'
+						text='上一次'
 					)
 				]
 			)
