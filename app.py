@@ -68,11 +68,14 @@ def handle_message(event):
 		print("我是1")
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/uMksip.png',
-								action=PostbackTemplateAction(label='查一下好日子',
+								action=PostbackTemplateAction(label='查一下紀錄',
 																	data='cal'
 																))
 			])
 		print("我是二")
+		template_message = TemplateSendMessage(
+		alt_text='查詢一下', template = image_carousel_template)
+		line_bot_api.reply_message(event.reply_token, template_message)
 
 	elif event.message.text in ('hi','Hi','HI','hello','你好','哈囉','嗨'):
 		profile = line_bot_api.get_profile(event.source.user_id)
