@@ -504,9 +504,9 @@ def handle_postback(event):
 		content = ''
 		content += user_name + ' 你好~'
 		content += '已成功紀錄你最近來的日期' + event.postback.params['date'] + '\n\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來 (σ`・∀・)σ\n\n'
 		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
-		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
+		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快唷!!\n☜（ﾟ∀ﾟ☜）!!\n\n'
 		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
 
 

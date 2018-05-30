@@ -24,10 +24,10 @@ def next_period(user_id,username,choice):
 		content = ''
 		content += user_name + ' 你好~\n'
 		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來(σ`・∀・)σ\n'
 		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
-		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
-		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
+		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快唷!!\n!!☜（ﾟ∀ﾟ☜）!!\n\n'
+		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷(σﾟ∀ﾟ)σ\n\n'
 		return content
 	elif choice =='上一次' :
 		content = ''
@@ -37,27 +37,27 @@ def next_period(user_id,username,choice):
 	elif choice =='下一次' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來(σ`・∀・)σ\n'
 		return content			
 	elif choice =='瘦身' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!'
+		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快唷\n!!☜（ﾟ∀ﾟ☜）!!'
 		return content
 	elif choice =='豐胸' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷'
+		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n!!(σﾟ∀ﾟ)σ!!'
 		return content
 	elif choice =='危險' :
 		content = ''
 		content += user_name + ' 你好~\n'
-		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻'
+		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕!!\n(╯°Д°)╯ ┻━┻'
 		return content
 	elif choice =='經期相關' :
 		content = ''
 		content += user_name + ' 你好~\n'
 		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'		
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來(σ`・∀・)σ\n'		
 		content += '要注意!!\n' + preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻'
 		return content
