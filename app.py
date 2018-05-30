@@ -68,7 +68,7 @@ def handle_message(event):
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/28/bLum7a.png',
 								action=DatetimePickerTemplateAction(label='查一下好日子',
-																	data='cal',
+																	data='cal'
 																	))
 			])
 		template_message = TemplateSendMessage(
