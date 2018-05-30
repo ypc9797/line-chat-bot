@@ -141,7 +141,7 @@ def handle_message(event):
 			template=ButtonsTemplate(
 				title='想瘦哪兒',
 				text='請選擇',
-				thumbnail_image_url='https://upload.cc/i1/2018/05/27/9bakSs.png',
+				thumbnail_image_url='https://upload.cc/i1/2018/05/31/42AKh7.png',
 				actions=[
 					MessageTemplateAction(
 						label='瘦腿',
@@ -203,38 +203,6 @@ def handle_message(event):
 						action=MessageTemplateAction(
 							label='減肥',
 							text='減肥',
-						)
-					)
-				]
-			)
-		)
-		line_bot_api.reply_message(event.reply_token, message)
-		return 0
-
-	elif event.message.text in ('科普', '知識'):	
-		message = TemplateSendMessage(
-			alt_text='knownledge template',
-			template=ImageCarouselTemplate(
-				columns=[
-					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/28/hayQre.png',
-						action=MessageTemplateAction(
-							label='那個來',
-							text='那個來',
-						)
-					),
-					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/28/7czXVi.png',
-						action=MessageTemplateAction(
-							label='沒來',
-							text='沒來',
-						)
-					),
-					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/28/lU1ftP.png',
-						action=MessageTemplateAction(
-							label='避孕',
-							text='避孕',
 						)
 					)
 				]
@@ -309,18 +277,18 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token, message)  
 		return 0
 
-	elif event.message.text in ('update', '更新日期','輸入經期','姨媽來了'):
+	elif event.message.text in ('update','Update', '更新日期','輸入經期','姨媽來了'):
 		message = TemplateSendMessage(
 			alt_text='確認輸入經期 template',
 			template=ConfirmTemplate(
-				text='要更新經期嗎？舊的紀錄會洗掉唷~~',
+				text='要更新經期嗎？舊的紀錄會洗掉唷~',
 				actions=[
 					MessageTemplateAction(
-						label='我要輸入',
+						label='我要輸入(๑ÒωÓ๑)',
 						text='強制輸入'
 					),
 					MessageTemplateAction(
-						label='算了',
+						label='算了(´ー`)σ',
 						text='上一次'
 					)
 				]
@@ -335,38 +303,31 @@ def handle_message(event):
 			template=ImageCarouselTemplate(
 				columns=[
 					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/27/hVyS0H.png',
+						image_url='https://upload.cc/i1/2018/05/31/y6OWHi.png',
 						action=MessageTemplateAction(
 							label='算一下日期',
 							text='查詢',
 						)
 					),
 					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/27/kiDedJ.png',
+						image_url='https://upload.cc/i1/2018/05/31/eDdQMh.png',
 						action=MessageTemplateAction(
 							label='減肥',
 							text='減肥',
 						)
 					),
 					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/27/E96QJF.png',
+						image_url='https://upload.cc/i1/2018/05/31/PXF1rR.png',
 						action=MessageTemplateAction(
 							label='豐胸',
 							text='豐胸',
 						)
 					),
 					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/28/efM7Sc.png',
+						image_url='https://upload.cc/i1/2018/05/31/1OWHVP.png',
 						action=MessageTemplateAction(
 							label='激勵',
 							text='激勵',
-						)
-					),
-					ImageCarouselColumn(
-						image_url='https://upload.cc/i1/2018/05/28/YfSntk.png',
-						action=MessageTemplateAction(
-							label='科普',
-							text='科普',
 						)
 					),
 					ImageCarouselColumn(
@@ -538,8 +499,6 @@ def handle_postback(event):
 		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
 		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
 		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
-		content += '輸入"科普"來補充更多小知識吧 (✿╹◡╹)'
-
 
 
 		auth_json_path = 'google_sheet.json'

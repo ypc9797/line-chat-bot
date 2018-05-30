@@ -28,7 +28,6 @@ def next_period(user_id,username,choice):
 		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
 		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
 		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
-		content += '輸入"科普"來補充更多小知識吧 (✿╹◡╹)'
 		return content
 	elif choice =='上一次' :
 		content = ''
@@ -40,7 +39,7 @@ def next_period(user_id,username,choice):
 		content += user_name + ' 你好~\n'
 		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來'
 		return content			
-	elif chioce =='瘦身' :
+	elif choice =='瘦身' :
 		content = ''
 		content += user_name + ' 你好~\n'
 		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!'
