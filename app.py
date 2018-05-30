@@ -51,7 +51,17 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
+	if event.message.text != "":
+		auth_json_path = 'google_sheet.json'
+		gss_scopes = ['https://spreadsheets.google.com/feeds']
+		gss_client = google_sheet.auth_gss_client(auth_json_path, gss_scopes)
+		spreadsheet_key = '1Q4hWEVjTB-rdc7HAi_Yc_cF4uymjfPHe70Cc36fLHyM'
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		message = event.message.text
+		google_sheet.user_log(gss_client, spreadsheet_key, the_id,user_name,message)
+		
 	if event.message.text == '強制輸入':
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/d6Skxh.png',
@@ -476,16 +486,6 @@ def handle_message(event):
 		message = TextSendMessage(text=event.message.text)
 		line_bot_api.reply_message(event.reply_token, message)
 
-	if event.message.text != "":
-		auth_json_path = 'google_sheet.json'
-		gss_scopes = ['https://spreadsheets.google.com/feeds']
-		gss_client = google_sheet.auth_gss_client(auth_json_path, gss_scopes)
-		spreadsheet_key = '1Q4hWEVjTB-rdc7HAi_Yc_cF4uymjfPHe70Cc36fLHyM'
-		the_id = event.source.user_id
-		profile = line_bot_api.get_profile(the_id)
-		user_name = profile.display_name
-		message = event.message.text
-		google_sheet.user_log(gss_client, spreadsheet_key, the_id,user_name,message)
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
