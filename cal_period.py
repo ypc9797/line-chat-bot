@@ -2,9 +2,10 @@ import datetime
 import google_sheet
 from datetime import datetime, timedelta,date
 
-def next_period(user_id,choice):
-	the_id = user_id
 
+def next_period(user_id,username,choice):
+	the_id = user_id
+	user_name = username
 	auth_json_path = 'google_sheet.json'
 	gss_scopes = ['https://spreadsheets.google.com/feeds']
 	gss_client = google_sheet.auth_gss_client(auth_json_path, gss_scopes)
@@ -24,13 +25,10 @@ def next_period(user_id,choice):
 	diet = last_date + timedelta(days=7) #經期來後7天開始的一周內容易懷孕
 	bra = last_date + timedelta(days=17)
 
-	profile = line_bot_api.get_profile(the_id)
-	user_name = profile.display_name
-
 	if choice == 'all' :
 		content = ''
-		content += user_name + ' 你好~'
-		content += '已成功紀錄你最近來的日期' + event.postback.params['date'] + '\n\n'
+		content += user_name + ' 你好~\n'
+		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
 		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
 		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
 		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
