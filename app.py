@@ -68,9 +68,9 @@ def handle_message(event):
 		print("我是1")
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/uMksip.png',
-								action=DatetimePickerTemplateAction(label='查一下好日子',
+								action=PostbackTemplateAction(label='查一下好日子',
 																	data='cal'
-																	))
+																))
 			])
 		print("我是二")
 
