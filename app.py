@@ -395,7 +395,7 @@ def handle_message(event):
 
 	elif event.message.text in ('日子'):
 		the_id = event.source.user_id
-		content = cal_period.next_period(day,the_id,'all')
+		content = cal_period.next_period(the_id,'all')
 		line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 	else :

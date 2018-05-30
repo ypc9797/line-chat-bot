@@ -1,7 +1,7 @@
 import datetime
 import google_sheet
 
-def next_period(day,user_id,choice):
+def next_period(user_id,choice):
 	the_id = user_id
 
 	auth_json_path = 'google_sheet.json'
@@ -18,8 +18,7 @@ def next_period(day,user_id,choice):
 		line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
 		return 0
 
-	last_date = day
-	last_date = datetime.strptime(the_day,"%Y-%m-%d")
+	last_date = datetime.strptime(last_date_str,"%Y-%m-%d")	
 	period = last_date + timedelta(days=28) #月經日期是第一天加上週期
 	preg = last_date + timedelta(days=10) #經期來後10天開始的一周內容易懷孕
 	diet = last_date + timedelta(days=7) #經期來後7天開始的一周內容易懷孕
