@@ -322,7 +322,8 @@ def handle_message(event):
 					),
 					PostbackTemplateAction(
 						label='算了',
-						text='上一次'
+						text='上一次',
+						data='whatever'
 					)
 				]
 			)
