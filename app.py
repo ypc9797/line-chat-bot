@@ -54,7 +54,7 @@ def handle_message(event):
 
 	if event.message.text == '第一次':
 		image_carousel_template = ImageCarouselTemplate(columns=[
-			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/28/bLum7a.png',
+			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/d6Skxh.png',
 								action=DatetimePickerTemplateAction(label='點我選最近一次經期日期',
 																	data='first',
 																	mode='date'))
@@ -73,10 +73,6 @@ def handle_message(event):
 																	))
 			])
 		print("我是二")
-		template_message = TemplateSendMessage(
-		alt_text='算一下良辰吉時', template = image_carousel_template)
-		line_bot_api.reply_message(event.reply_token, template_message)
-		return 0
 
 	elif event.message.text in ('hi','Hi','HI','hello','你好','哈囉','嗨'):
 		profile = line_bot_api.get_profile(event.source.user_id)
