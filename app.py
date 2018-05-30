@@ -448,12 +448,13 @@ def handle_postback(event):
 		print("我是五")
 		try:
 			print('im here!!')
-			last_date_str = find_user_period(gss_client, spreadsheet_key, the_id)
+			last_date_str = google_sheet.find_user_period(gss_client, spreadsheet_key, the_id)
 			print(last_date_str)
 		except:
 			print("我是六")
 			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"第一次"來選擇吧!!'))
-		
+			return 0
+
 		print("我是七")
 		last_date = datetime.strftime(last_date_str,"%Y-%m-%d")		
 		period = last_date + timedelta(days=28) #月經日期是第一天加上週期
