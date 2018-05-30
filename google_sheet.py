@@ -40,5 +40,5 @@ def user_log(gss_client, key, userid,username,message):
 	day = datetime.now().strftime("%Y-%m-%d")
 	time = datetime.now().time().strftime("%H:%M:%S")
 	wks = gss_client.open_by_key(key)
-	sheet = wks.sheet2
+	sheet = wks.get_worksheet(1)
 	sheet.insert_row([userid,username,day,time,message], 2)
