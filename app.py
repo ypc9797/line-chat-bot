@@ -308,6 +308,25 @@ def handle_message(event):
 		)
 		line_bot_api.reply_message(event.reply_token, message)  
 		return 0
+
+	elif event.message.text in ('update', '更新日期','輸入經期','姨媽來了'):
+		message = TemplateSendMessage(
+			alt_text='確認輸入經期 template',
+			template=ConfirmTemplate(
+				text='要更新經期嗎？舊的紀錄會洗掉唷~~',
+				actions=[
+					PostbackTemplateAction(
+						label='我要輸入',
+						data='update'
+					),
+					PostbackTemplateAction(
+						label='算了'
+					)
+				]
+			)
+		)
+		line_bot_api.reply_message(event.reply_token, message)  
+		return 0
 	
 	elif event.message.text in ('menu','Menu','目錄','姨媽'):
 		message = TemplateSendMessage(
@@ -499,7 +518,7 @@ def handle_message(event):
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
-	if event.postback.data == 'first':
+	if event.postback.data == 'update':
 		the_day = event.postback.params['date']
 		last_date = datetime.strptime(the_day,"%Y-%m-%d")
 		period = last_date + timedelta(days=28) #月經日期是第一天加上週期

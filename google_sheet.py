@@ -5,13 +5,23 @@ from oauth2client.service_account import ServiceAccountCredentials
 def auth_gss_client(path, scopes):
 	credentials = ServiceAccountCredentials.from_json_keyfile_name(path,scopes)
 	return gspread.authorize(credentials)
+	
 def update_sheet(gss_client, key, item,the_day):
-	wks = gss_client.open_by_key(key)
-	sheet = wks.sheet1
-	sheet.insert_row([item,the_day], 2)
+	theday = the_day
+	userid = item
+	check = find_user_period(gss_client, key, userid)
+	if check == 0: #原本沒有紀錄
+		wks = gss_client.open_by_key(key)
+		sheet = wks.sheet1
+		sheet.insert_row([item,the_day], 2)
+	else:
+		cell = sheet.find(userid)
+		r = cell.row
+		c = cell.col
+		sheet.update_cell(r,c+1,theday)
+
 def find_user_period(gss_client, key, userid):
-	print("窩要近來查了")
-	print(userid)
+
 	wks = gss_client.open_by_key(key)
 	sheet = wks.sheet1
 	try:
