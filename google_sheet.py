@@ -17,6 +17,8 @@ def find_user_period(gss_client, key, userid):
 		r = cell.row
 		c = cell.col
 		period_day = sheet.cell(r,c+1).value
+		print('hihihihihi')
+		print(period_day)
 		return period_day
 	except:
 		return 0

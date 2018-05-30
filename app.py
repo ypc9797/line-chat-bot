@@ -445,7 +445,9 @@ def handle_postback(event):
 		spreadsheet_key = '1Q4hWEVjTB-rdc7HAi_Yc_cF4uymjfPHe70Cc36fLHyM'
 
 		try:
+			print('im here!!')
 			last_date_str = find_user_period(gss_client, spreadsheet_key, the_id)
+			print(last_date_str)
 		except:
 			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"第一次"來選擇吧!!'))
 		
