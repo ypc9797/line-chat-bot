@@ -52,7 +52,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
 
-	if event.message.text == '第一次':
+	if event.message.text == 'first':
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/d6Skxh.png',
 								action=DatetimePickerTemplateAction(label='點我選最近一次經期日期',
@@ -64,16 +64,7 @@ def handle_message(event):
 		line_bot_api.reply_message(event.reply_token, template_message)
 		return 0
 
-	elif event.message.text in ('算一下','查詢'):
-		image_carousel_template = ImageCarouselTemplate(columns=[
-			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/uMksip.png',
-								action=PostbackTemplateAction(label='查一下紀錄',
-																	data='cal'
-																))
-			])
-		template_message = TemplateSendMessage(
-		alt_text='查詢一下', template = image_carousel_template)
-		line_bot_api.reply_message(event.reply_token, template_message)
+
 
 	elif event.message.text in ('hi','Hi','HI','hello','你好','哈囉','嗨'):
 		profile = line_bot_api.get_profile(event.source.user_id)
@@ -327,7 +318,7 @@ def handle_message(event):
 						image_url='https://upload.cc/i1/2018/05/27/hVyS0H.png',
 						action=MessageTemplateAction(
 							label='算一下日期',
-							text='算一下',
+							text='查詢',
 						)
 					),
 					ImageCarouselColumn(
@@ -393,17 +384,109 @@ def handle_message(event):
 		)
 		line_bot_api.reply_message(event.reply_token, message)		
 
-	elif event.message.text in ('日子'):
+	elif event.message.text in ('上一次'):
 		the_id = event.source.user_id
 		profile = line_bot_api.get_profile(the_id)
 		user_name = profile.display_name
-		content = cal_period.next_period(the_id,user_name,'all')
-
+		content = cal_period.next_period(the_id,user_name,'上一次')
 
 		if content == 0:
 			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
 		else :
 			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ('下一次'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'下一次')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ('黃金瘦身期','瘦身期'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'瘦身')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ('黃金豐胸期','豐胸期'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'豐胸')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ('全部','查全部','全部都來'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'all')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ('危險','危險期','非安全期'):
+		the_id = event.source.user_id
+		profile = line_bot_api.get_profile(the_id)
+		user_name = profile.display_name
+		content = cal_period.next_period(the_id,user_name,'危險')
+
+		if content == 0:
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"update"來記錄吧!!'))
+		else :
+			line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
+
+	elif event.message.text in ("查","查詢"):
+		buttons_template = TemplateSendMessage(
+			alt_text='查詢 template',
+			template=ButtonsTemplate(
+				title='查什麼呢',
+				text='要查什麼呢？',
+				thumbnail_image_url='https://upload.cc/i1/2018/05/31/DVwFRg.png',
+				actions=[
+					MessageTemplateAction(
+						label='上一次月經',
+						text='上一次'
+					),
+					MessageTemplateAction(
+						label='預計下一次月經',
+						text='下一次'
+					),
+					MessageTemplateAction(
+						label='非安全期',
+						text='危險期'
+					),
+					MessageTemplateAction(
+						label='黃金瘦身期',
+						text='黃金瘦身期'
+					),
+					MessageTemplateAction(
+						label='黃金豐胸期',
+						text='黃金豐胸期'
+					),
+					MessageTemplateAction(
+						label='全部都來',
+						text='查全部'
+					)
+				]
+			)
+		)
+		line_bot_api.reply_message(event.reply_token, buttons_template)
+		return 0
 
 	else :
 		message = TextSendMessage(text=event.message.text)
@@ -444,44 +527,6 @@ def handle_postback(event):
 		google_sheet.update_sheet(gss_client, spreadsheet_key, the_id, the_day)
 		line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
-
-	elif event.postback.data == 'cal':
-		print("我是三")
-		the_id = event.source.user_id
-		profile = line_bot_api.get_profile(the_id)
-		user_name = profile.display_name
-		print("我是四")
-		auth_json_path = 'google_sheet.json'
-		gss_scopes = ['https://spreadsheets.google.com/feeds']
-		gss_client = google_sheet.auth_gss_client(auth_json_path, gss_scopes)
-		spreadsheet_key = '1Q4hWEVjTB-rdc7HAi_Yc_cF4uymjfPHe70Cc36fLHyM'
-		print("我是五")
-		try:
-			print('im here!!')
-			last_date_str = google_sheet.find_user_period(gss_client, spreadsheet_key, the_id)
-			print(last_date_str)
-		except:
-			print("我是六")
-			line_bot_api.reply_message(event.reply_token, TextSendMessage(text='你還沒有輸入最近的一次月經日期歐～請輸入"第一次"來選擇吧!!'))
-			return 0
-
-		print("我是七")
-		last_date = datetime.strptime(last_date_str,"%Y-%m-%d")		
-		period = last_date + timedelta(days=28) #月經日期是第一天加上週期
-		preg = last_date + timedelta(days=10) #經期來後10天開始的一周內容易懷孕
-		diet = last_date + timedelta(days=7) #經期來後7天開始的一周內容易懷孕
-		bra = last_date + timedelta(days=17)
-		print("我是八")
-		content = ''
-		content += user_name + ' 你好~\n'
-		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
-		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
-		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
-		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
-		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
-		content += '輸入"科普"來補充更多小知識吧 (✿╹◡╹)'
-		print("我是九")
-		line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 
 	elif event.postback.data == 'contact_me':

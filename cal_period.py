@@ -10,13 +10,8 @@ def next_period(user_id,username,choice):
 	gss_scopes = ['https://spreadsheets.google.com/feeds']
 	gss_client = google_sheet.auth_gss_client(auth_json_path, gss_scopes)
 	spreadsheet_key = '1Q4hWEVjTB-rdc7HAi_Yc_cF4uymjfPHe70Cc36fLHyM'
-	print("我是五")
-	try:
-		print('im here!!')
-		last_date_str = google_sheet.find_user_period(gss_client, spreadsheet_key, the_id)
-		print(last_date_str)
-	except:
-		print("我是六")
+	last_date_str = google_sheet.find_user_period(gss_client, spreadsheet_key, the_id)
+	if last_date_str ==0:
 		return 0
 
 	last_date = datetime.strptime(last_date_str,"%Y-%m-%d")	
@@ -34,5 +29,29 @@ def next_period(user_id,username,choice):
 		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
 		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
 		content += '輸入"科普"來補充更多小知識吧 (✿╹◡╹)'
-
-	return content
+		return content
+	elif choice =='上一次' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += '你上次紀錄的日期是' + last_date_str + '\n\n'
+		return content
+	elif choice =='下一次' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += '預計下一次差不多會是' + period.strftime("%m/%d") + '來\n\n'
+		return content			
+	elif chioce =='瘦身' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += diet.strftime("%m/%d") + ' 開始的一週內少吃多動會瘦很快!!\n\n'
+		return content
+	elif choice =='豐胸' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += bra.strftime("%m/%d") + ' 開始的一週多按摩奶奶會長很大唷\n\n'
+		return content
+	elif choice =='危險' :
+		content = ''
+		content += user_name + ' 你好~\n'
+		content += preg.strftime("%m/%d") + ' 開始的一週很容易懷孕 (╯°Д°)╯ ┻━┻\n\n'
+		return content
