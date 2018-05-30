@@ -2,7 +2,7 @@ import sys
 
 import datetime
 
-import google_sheet
+import google_sheet,cal_period
 
 from flask import Flask, request, abort
 from datetime import datetime, timedelta,date
@@ -65,14 +65,12 @@ def handle_message(event):
 		return 0
 
 	elif event.message.text in ('算一下','查詢'):
-		print("我是1")
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/uMksip.png',
 								action=PostbackTemplateAction(label='查一下紀錄',
 																	data='cal'
 																))
 			])
-		print("我是二")
 		template_message = TemplateSendMessage(
 		alt_text='查詢一下', template = image_carousel_template)
 		line_bot_api.reply_message(event.reply_token, template_message)
@@ -140,7 +138,7 @@ def handle_message(event):
 		message = TextSendMessage(text='那個來怎麼辦呢')
 		line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text in ('沒來'):
-		message = TextSendMessage(text='沒來怎麼辦呢')
+		message = TextSendMessage(text='阿賀!!!??')
 		line_bot_api.reply_message(event.reply_token, message)
 	elif event.message.text in ('避孕'):
 		message = TextSendMessage(text='怎麼避孕呢')
@@ -394,6 +392,11 @@ def handle_message(event):
 			)
 		)
 		line_bot_api.reply_message(event.reply_token, message)		
+
+	elif event.message.text in ('日子'):
+		the_id = event.source.user_id
+		content = cal_period.next_period(day,the_id,'all')
+		line_bot_api.reply_message(event.reply_token, TextSendMessage(text=content))
 
 	else :
 		message = TextSendMessage(text=event.message.text)
