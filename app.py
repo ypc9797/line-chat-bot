@@ -61,7 +61,7 @@ def handle_message(event):
 		user_name = profile.display_name
 		message = event.message.text
 		google_sheet.user_log(gss_client, spreadsheet_key, the_id,user_name,message)
-		
+
 	if event.message.text == '強制輸入':
 		image_carousel_template = ImageCarouselTemplate(columns=[
 			ImageCarouselColumn(image_url='https://upload.cc/i1/2018/05/31/d6Skxh.png',
@@ -81,7 +81,7 @@ def handle_message(event):
 		line_bot_api.reply_message(
 			event.reply_token, [
 				TextSendMessage(
-					text='Hi hi ' + profile.display_name
+					text='Hi hi ' + profile.display_name + '\n' + '試試看輸入"menu"？'
 				)
 			]
 		)		
