@@ -484,7 +484,7 @@ def handle_message(event):
 		the_id = event.source.user_id
 		profile = line_bot_api.get_profile(the_id)
 		user_name = profile.display_name
-		message = TextSendMessage(text=event.message.text)
+		message = event.message.text
 		google_sheet.user_log(gss_client, spreadsheet_key, the_id,user_name,message)
 
 @handler.add(PostbackEvent)
