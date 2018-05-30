@@ -81,7 +81,7 @@ def handle_message(event):
 		line_bot_api.reply_message(
 			event.reply_token, [
 				TextSendMessage(
-					text='Hi hi ' + profile.display_name + '\n' + '試試看輸入"menu"？'
+					text='Hi hi ' + profile.display_name + '\n' + '輸入"menu"來玩吧！\n( ━☞´◔‿ゝ◔`)━☞'
 				)
 			]
 		)		
@@ -461,7 +461,7 @@ def handle_message(event):
 				thumbnail_image_url='https://upload.cc/i1/2018/05/31/DVwFRg.png',
 				actions=[
 					MessageTemplateAction(
-						label='查詢經期相關問題',
+						label='查詢經期相關日期',
 						text='經期相關'
 					),
 					MessageTemplateAction(
