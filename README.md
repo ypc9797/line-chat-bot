@@ -30,3 +30,5 @@
 
 ![LOGO](https://github.com/ypc9797/line-chat-bot/raw/master/qrcode.PNG)
 
+## 實際操作影片
+https://youtu.be/-NPRu-lsLLU
